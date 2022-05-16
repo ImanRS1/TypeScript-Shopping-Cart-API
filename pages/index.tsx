@@ -8,12 +8,12 @@ import { useQuery } from "react-query";
 
 import Item from "../components/Item";
 import Drawer from "@material-ui/core/Drawer";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import { CircularProgress } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import IconButton from "@material-ui/core/IconButton";
+import Cart from "../components/Cart";
 
 import { CartItemType } from "./_app";
 
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
 
   console.log(data);
 
-  const getTotalItems = (items: CartItemType[]) => null;
+  const getTotalItems = (items: CartItemType[]) => items.reduce((ack: number, item) => ack + item.amount, 0);
 
   const handleAddToCart = (clickedItem: CartItemType) => null;
 
@@ -53,7 +53,11 @@ const Home: NextPage = () => {
           open={cartOpen}
           onClose={() => setCartOpen(false)}
         >
-          Cart goes here
+          <Cart 
+            cartItems={cartItems} 
+            addToCart={handleAddToCart} 
+            removeFromCart={handleRemoveFromCart}
+          />
         </Drawer>
         <StyledButton onClick={() => setCartOpen(true)}>
           <Badge badgeContent={getTotalItems(cartItems)} color="error">
