@@ -51,7 +51,7 @@ const Home: NextPage = () => {
     setCartItems((prev) =>
       prev.reduce((ack, item) => {
         if (item.id === id) {
-          if (item.ammount === 1) return ack;
+          if (item.amount === 1) return ack;
           return [...ack, { ...item, amount: item.amount - 1 }];
         } else {
           return [...ack, item];
