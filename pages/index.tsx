@@ -19,7 +19,7 @@ import { CartItemType } from "./_app";
 
 const Home: NextPage = () => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([] as CartItemType);
+  const [cartItems, setCartItems] = useState([] as unknown as CartItemType);
   const getProducts = async (): Promise<CartItemType[]> =>
     await (await fetch("https://fakestoreapi.com/products")).json();
 
@@ -30,9 +30,22 @@ const Home: NextPage = () => {
 
   console.log(data);
 
-  const getTotalItems = (items: CartItemType[]) => items.reduce((ack: number, item) => ack + item.amount, 0);
+  const getTotalItems = (items: CartItemType[]) =>
+    items.reduce((ack: number, item) => ack + item.amount, 0);
 
-  const handleAddToCart = (clickedItem: CartItemType) => null;
+  const handleAddToCart = (clickedItem: CartItemType) => {
+    setCartItems((prev) => {
+      const isItemInCart = prev.find((item) => item.id === clickedItem.id);
+      if (isItemInCart) {
+        return prev.map((item) =>
+          item.id === clickedItem.id
+            ? { ...item, amount: item.amount + 1 }
+            : item
+        );
+      }
+      return [...prev, { ...clickedItem, amount: 1 }];
+    });
+  };
 
   const handleRemoveFromCart = () => null;
 
@@ -53,9 +66,9 @@ const Home: NextPage = () => {
           open={cartOpen}
           onClose={() => setCartOpen(false)}
         >
-          <Cart 
-            cartItems={cartItems} 
-            addToCart={handleAddToCart} 
+          <Cart
+            cartItems={cartItems}
+            addToCart={handleAddToCart}
             removeFromCart={handleRemoveFromCart}
           />
         </Drawer>

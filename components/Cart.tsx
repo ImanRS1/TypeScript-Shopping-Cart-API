@@ -20,7 +20,7 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
         <CartItem
           key={item.id}
           item={item}
-          addToCart0={addToCart}
+          addToCart={addToCart}
           removeFromCart={removeFromCart}
         />
       ))}
