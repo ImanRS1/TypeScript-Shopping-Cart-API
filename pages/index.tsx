@@ -13,13 +13,14 @@ import Grid from "@material-ui/core/Grid";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import Cart from "../components/Cart";
 
 import { CartItemType } from "./_app";
 
 const Home: NextPage = () => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([] as unknown as CartItemType);
+  const [cartItems, setCartItems] = useState([] as CartItemType);
   const getProducts = async (): Promise<CartItemType[]> =>
     await (await fetch("https://fakestoreapi.com/products")).json();
 
@@ -28,16 +29,16 @@ const Home: NextPage = () => {
     getProducts
   );
 
-  console.log(data);
-
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
   const handleAddToCart = (clickedItem: CartItemType) => {
     setCartItems((prev) => {
-      const isItemInCart = prev.find((item) => item.id === clickedItem.id);
+      const isItemInCart = prev.find(
+        (item: CartItemType) => item.id === clickedItem.id
+      );
       if (isItemInCart) {
-        return prev.map((item) =>
+        return prev.map((item: CartItemType) =>
           item.id === clickedItem.id
             ? { ...item, amount: item.amount + 1 }
             : item
@@ -60,7 +61,20 @@ const Home: NextPage = () => {
     );
   };
 
-  if (isLoading) return <CircularProgress />;
+  if (isLoading)
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </div>
+    );
+
   if (error) return <div>Something went wrong... </div>;
 
   return (
@@ -82,12 +96,21 @@ const Home: NextPage = () => {
             addToCart={handleAddToCart}
             removeFromCart={handleRemoveFromCart}
           />
+          <CloseIcon
+            onClick={() => setCartOpen(false)}
+            className="close-icon"
+          />
         </Drawer>
         <StyledButton onClick={() => setCartOpen(true)}>
           <Badge badgeContent={getTotalItems(cartItems)} color="error">
             <AddShoppingCartIcon />
           </Badge>
         </StyledButton>
+        {/* {cartOpen ? (
+          <StyledCloseButton onClick={() => setCartOpen(false)}>
+            hej
+          </StyledCloseButton>
+        ) : null} */}
         <Grid container spacing={3}>
           {data?.map((item) => (
             <Grid item key={item.id} xs={12} sm={4}>
@@ -102,11 +125,21 @@ const Home: NextPage = () => {
 
 export default Home;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  }
+`;
 
 const StyledButton = styled(IconButton)`
   position: fixed;
   z-index: 100;
-  right: 20px;
-  top: 20px;
+  right: 10px;
+  top: 10px;
+`;
+
+const StyledCloseButton = styled(IconButton)`
+  position: fixed;
+  z-index: 100;
+  left: 10px;
+  top: 10px;
+  color: red;
 `;
