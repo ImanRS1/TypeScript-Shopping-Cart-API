@@ -96,10 +96,13 @@ const Home: NextPage = () => {
             addToCart={handleAddToCart}
             removeFromCart={handleRemoveFromCart}
           />
-          <CloseIcon
-            onClick={() => setCartOpen(false)}
-            className="close-icon"
-          />
+
+          <StyledCloseButton>
+            <CloseIcon
+              onClick={() => setCartOpen(false)}
+              className="close-icon"
+            />
+          </StyledCloseButton>
         </Drawer>
         <StyledButton onClick={() => setCartOpen(true)}>
           <Badge badgeContent={getTotalItems(cartItems)} color="error">
@@ -139,7 +142,6 @@ const StyledButton = styled(IconButton)`
 const StyledCloseButton = styled(IconButton)`
   position: fixed;
   z-index: 100;
-  left: 10px;
+  right: 10px;
   top: 10px;
-  color: red;
 `;
