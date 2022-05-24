@@ -20,7 +20,7 @@ import { CartItemType } from "./_app";
 
 const Home: NextPage = () => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([] as unknown as CartItemType);
+  const [cartItems, setCartItems] = useState([]);
   const getProducts = async (): Promise<CartItemType[]> =>
     await (await fetch("https://fakestoreapi.com/products")).json();
 
