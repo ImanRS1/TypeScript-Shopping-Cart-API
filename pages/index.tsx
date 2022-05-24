@@ -20,7 +20,7 @@ import { CartItemType } from "./_app";
 
 const Home: NextPage = () => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([] as CartItemType);
+  const [cartItems, setCartItems] = useState([] as unknown as CartItemType);
   const getProducts = async (): Promise<CartItemType[]> =>
     await (await fetch("https://fakestoreapi.com/products")).json();
 
@@ -33,8 +33,8 @@ const Home: NextPage = () => {
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
   const handleAddToCart = (clickedItem: CartItemType) => {
-    setCartItems((prev) => {
-      const isItemInCart = prev.find(
+    setCartItems((prev: any) => {
+      const isItemInCart: boolean = prev.find(
         (item: CartItemType) => item.id === clickedItem.id
       );
       if (isItemInCart) {
@@ -49,8 +49,8 @@ const Home: NextPage = () => {
   };
 
   const handleRemoveFromCart = (id: number) => {
-    setCartItems((prev) =>
-      prev.reduce((ack, item) => {
+    setCartItems((prev: any) =>
+      prev.reduce((ack: any, item: any) => {
         if (item.id === id) {
           if (item.amount === 1) return ack;
           return [...ack, { ...item, amount: item.amount - 1 }];
