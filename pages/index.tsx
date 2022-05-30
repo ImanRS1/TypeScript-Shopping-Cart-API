@@ -134,6 +134,8 @@ export default Home;
 
 const Wrapper = styled.div`
   padding: 3rem;
+  max-width: 1440px;
+  margin: 0 auto;
 
   .titles {
     text-align: center;
