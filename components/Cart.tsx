@@ -38,4 +38,8 @@ const Wrapper = styled.aside`
   font-family: Arial, Helvetica, sans-serif;
   width: 500px;
   padding: 20px;
+
+  @media screen and (max-width: 600px) {
+    width: 300px;
+  }
 `;

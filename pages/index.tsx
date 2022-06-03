@@ -144,6 +144,10 @@ const Wrapper = styled.div`
       margin: 0;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    padding: 2rem;
+  }
 `;
 
 const StyledButton = styled(IconButton)`

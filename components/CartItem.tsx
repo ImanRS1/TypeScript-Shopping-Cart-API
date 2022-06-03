@@ -31,7 +31,7 @@ const CartItem: React.FC<Props> = ({ item, addToCart, removeFromCart }) => (
           >
             -
           </Button>
-          <p>{item.amount}</p>
+          <p className="amount">{item.amount}</p>
           <Button
             size="small"
             disableElevation
@@ -64,6 +64,15 @@ const Wrapper = styled.div`
   .price-info {
     display: flex;
     justify-content: space-between;
+  }
+
+  .buttons {
+    align-items: center;
+    height: 1rem;
+
+    .amount {
+      margin: 0.4rem;
+    }
   }
 
   img {
