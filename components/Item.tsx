@@ -1,18 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-import Button from '@material-ui/core/Button'
+import Button from "@material-ui/core/Button";
 
-import { CartItemType } from '../pages/_app'
+import { CartItemType } from "../pages/_app";
 
 type Props = {
   item: CartItemType;
   handleAddToCart: (clickedItem: CartItemType) => void;
+};
 
-}
-
-const Item: React.FC<Props> = ({item, handleAddToCart}) => (
+const Item: React.FC<Props> = ({ item, handleAddToCart }) => (
   <Wrapper>
     <img src={item.image} alt={item.title} />
     <div>
@@ -22,10 +21,9 @@ const Item: React.FC<Props> = ({item, handleAddToCart}) => (
     </div>
     <Button onClick={() => handleAddToCart(item)}>Add to cart</Button>
   </Wrapper>
-)
+);
 
 export default Item;
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,6 +33,7 @@ const Wrapper = styled.div`
   border: 1px solid lightblue;
   border-radius: 20px;
   height: 100%;
+  background-color: #dfdfdf;
 
   button {
     border-radius: 0 0 20px 20px;
