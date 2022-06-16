@@ -71,7 +71,7 @@ const Home: NextPage = () => {
           height: "100vh",
         }}
       >
-        <CircularProgress />
+        <CircularProgress style={{ color: "black" }} />
       </div>
     );
 
