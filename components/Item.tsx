@@ -40,7 +40,7 @@ const Wrapper = styled.div`
   }
 
   img {
-    max-height: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 20px 20px 0 0;
   }
@@ -49,6 +49,8 @@ const Wrapper = styled.div`
     font-family: Arial, Helvetica, sans-serif;
     padding: 1rem;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 
     textarea {
       overflow-y: scroll;
@@ -58,6 +60,7 @@ const Wrapper = styled.div`
       user-select: none;
       background-color: transparent;
       border: none;
+      flex-grow: 1;
     }
 
     textarea::-webkit-scrollbar {
