@@ -33,8 +33,8 @@ const Wrapper = styled.div`
   border: 1px solid lightblue;
   border-radius: 20px;
   height: 100%;
-  background-color: #dfdfdf;
-
+  background-color: #fefbe9;
+  border: 5px solid #183a1d;
   button {
     border-radius: 0 0 20px 20px;
   }
@@ -51,6 +51,10 @@ const Wrapper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    h3 {
+      color: #f0a04b;
+    }
 
     textarea {
       overflow-y: scroll;
