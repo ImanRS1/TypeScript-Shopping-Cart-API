@@ -46,7 +46,7 @@ const Wrapper = styled.div`
   }
 
   div {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto Mono", monospace;
     padding: 1rem;
     height: 100%;
     display: flex;
@@ -61,6 +61,7 @@ const Wrapper = styled.div`
       background-color: transparent;
       border: none;
       flex-grow: 1;
+      font-family: "Roboto Mono", monospace;
     }
 
     textarea::-webkit-scrollbar {

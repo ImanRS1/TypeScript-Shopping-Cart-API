@@ -139,6 +139,7 @@ const Wrapper = styled.div`
 
   .titles {
     text-align: center;
+    font-family: "Tilt Warp", cursive;
 
     h1 {
       margin: 0;
